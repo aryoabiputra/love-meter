@@ -1,0 +1,133 @@
+:root{
+  --pink:#ff4d9d; --pink2:#ff77b7; --rose:#ff7ca3; --purple:#a78bfa; --violet:#8b5cf6; --gold:#fbbf24;
+  --mint:#2dd4bf; --sky:#38bdf8; --lime:#84cc16; --red:#ef4444; --orange:#f97316; --yellow:#fde047;
+  --text:#2f2a2e; --muted:#6b7280; --card:#ffffffdd;
+}
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; padding:0}
+body{
+  font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color:var(--text); overflow-x:hidden; background:#fff0f6;
+}
+
+/* Backgrounds */
+.bg{
+  position:fixed; inset:0; z-index:-2; filter:saturate(1.1);
+  background:
+    radial-gradient(1200px 700px at 20% 20%, #ffe1ef, transparent 60%),
+    radial-gradient(900px 600px at 85% 10%, #e8f9ff, transparent 60%),
+    radial-gradient(1400px 800px at 50% 100%, #ffe9f6, transparent 60%),
+    linear-gradient(180deg, #fff7fb 0%, #fff 100%);
+  animation:hue 16s linear infinite;
+}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+.blob{position:fixed; border-radius:50%; opacity:.35; filter:blur(20px); z-index:-1}
+.b1{width:420px; height:420px; background:linear-gradient(45deg, var(--pink), var(--purple)); left:-100px; top:-80px; animation:float 10s ease-in-out infinite}
+.b2{width:360px; height:360px; background:linear-gradient(45deg, var(--sky), var(--mint)); right:-120px; top:40px; animation:float 12s ease-in-out infinite reverse}
+.b3{width:500px; height:500px; background:linear-gradient(45deg, var(--rose), var(--pink2)); left:40%; bottom:-180px; animation:float 14s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-18px)}}
+#tsparticles{position:fixed; inset:0; z-index:-3}
+
+/* Layout */
+.wrap{min-height:100dvh; display:grid; place-items:center; padding:20px}
+.card{
+  width:100%; max-width:860px; background:var(--card); backdrop-filter:blur(10px);
+  border:1px solid #fff6; border-radius:26px; box-shadow:0 10px 30px #00000022;
+  padding:26px; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; /* supaya credit bisa nempel bawah */
+  gap:16px;
+}
+.shine{position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(800px 200px at var(--mx,50%) -20%, #ffffffaa, transparent 40%)}
+
+h1{margin:0; font-size:clamp(20px,5vw,36px); font-weight:800; text-align:center}
+.sub{margin:0; color:var(--muted); text-align:center}
+
+/* Form row: 2 input 1 button — rata & seimbang */
+.row{
+  display:grid;
+  grid-template-columns: 1fr 1fr auto; /* dua input sama lebar, tombol auto */
+  gap:12px; align-items:center;
+}
+.row > *{min-width:0} /* biar ga overflow saat placeholder panjang */
+
+input{
+  width:100%; height:48px; padding:0 14px;
+  border:2px solid #ffd6e8; border-radius:14px; background:#fff;
+  font-weight:600; font-size:16px; line-height:1;
+  outline:none; transition:border .2s, box-shadow .2s, transform .1s;
+  appearance:none;
+}
+input:focus{border-color:#ff9bc6; box-shadow:0 0 0 6px #ffdbec99}
+input::placeholder{color:#b0b6c0}
+
+/* Tombol selalu sejajar vertikal dengan input (equal height via min-height) */
+#cek{
+  min-height:48px; padding:0 22px;
+  border:none; border-radius:14px; color:#fff; font-weight:800; cursor:pointer;
+  background:linear-gradient(90deg, var(--pink), var(--rose), var(--purple));
+  background-size:200% 100%;
+  box-shadow:0 10px 20px #ff73b433;
+  transition:transform .06s ease, filter .2s ease, background-position .4s ease;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+#cek:hover{background-position:100% 0}
+#cek:active{transform:translateY(1px) scale(.99)}
+
+/* Result */
+.result{background:#fffafc; border:1px dashed #ffc6dd; border-radius:16px; padding:14px}
+.names{font-weight:800; font-size:18px; text-align:center}
+.badge{display:inline-block; padding:2px 10px; border-radius:999px; margin-left:8px; background:#fff1a6; color:#7c5801; font-weight:800; font-size:12px; vertical-align:middle}
+.meterWrap{margin:12px auto 0; width:100%; max-width:520px; height:18px; border-radius:999px; background:#f3f4f6; overflow:hidden; box-shadow:inset 0 1px 3px #00000014}
+.meter{height:100%; width:0%}
+.legend{display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; justify-content:center}
+.chip{flex:1 1 28px; min-width:28px; text-align:center; padding:6px 0; border-radius:10px; background:#fff; color:#64748b; font-weight:800; font-size:12px; border:1px solid #ffe1f0}
+.msg{margin-top:10px; font-weight:800; text-align:center}
+.muted{color:var(--muted); font-weight:500; text-align:center}
+
+/* Footer & credit: credit nempel di bawah kontainer */
+footer{font-size:12px; color:#9ca3af; text-align:center}
+.made-by{
+  margin-top:auto; /* dorong ke bawah */
+  text-align:center; font-size:12px; color:#9ca3af;
+  padding-top:6px;
+}
+
+/* Loader overlay — spinner + text center & sejajar */
+.loader{
+  position:fixed; inset:0; display:none; place-items:center;
+  background:rgba(255,246,252,.6); backdrop-filter: blur(4px); z-index:20
+}
+.loader.show{display:grid}
+.loader > .box{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+}
+.spinner{
+  width:90px; aspect-ratio:1/1; border-radius:50%; position:relative;
+  background:conic-gradient(from 0deg, var(--pink), var(--rose), var(--purple), var(--pink));
+  animation:spin 1.2s linear infinite;
+}
+.spinner::before{
+  content:""; position:absolute; inset:14px; background:#fff; border-radius:50%;
+  box-shadow: inset 0 0 40px #ffd6e8;
+}
+.loading-text{font-weight:800; color:#a855f7; font-size:14px; text-align:center}
+@keyframes spin{to{transform:rotate(1turn)}}
+
+/* ===== Responsiveness ===== */
+@media (max-width:1024px){
+  .row{grid-template-columns: 1fr 1fr}
+  #cek{grid-column:1 / -1; width:100%} /* tombol full row */
+}
+@media (max-width:768px){
+  .row{grid-template-columns:1fr}     /* satu kolom: semua elemen full width */
+  .row > *{width:100%}
+  #cek{width:100%}
+}
+@media (max-width:520px){
+  .b3{display:none}
+  .b1,.b2{transform:scale(.85)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important; transition:none !important}
+}
