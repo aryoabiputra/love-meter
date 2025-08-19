@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Meter❤️</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="tsparticles"></div>
+  <div class="bg"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="shine" id="shine"></div>
+      <h1>LOVE METER❤️</h1>
+      <p class="sub">Masukkan nama kamu dan pasangan untuk melihat kecocokan✨</p>
+
+      <div class="row">
+        <input type="text" id="inputCo" placeholder="nama cowok" />
+        <input type="text" id="inputCe" placeholder="nama cewek" />
+        <button id="cek">Cek</button>
+      </div>
+
+      <div class="result" id="result" hidden>
+        <div class="names" id="nameLine"></div>
+        <div class="meterWrap">
+          <div class="meter" id="meter"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="msg" id="msg"></div>
+        <div class="muted" id="hint"></div>
+      </div>
+
+      <!-- <footer>Tips: coba pakai nama panggilan favorit kalian. 💕</footer> -->
+      <footer></footer>
+      <div class="made-by">Developed by Aryo Abi Putra</div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
